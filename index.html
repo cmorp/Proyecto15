@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://kit.fontawesome.com/a009c454f8.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="head">
+            <h1>TO DO LIST</h1>
+        </div>
+
+        <div class="main">
+
+            <div class="newTasks">
+                <input required spellcheck="false" type="text" placeholder="Ingresa una nueva tarea" id="newTask">
+                <label for="newTask">¡Organízate!</label>
+                <span id="addTask" class="fa-stack fa-2x">
+                    <i class="fa-solid fa-circle fa-stack-2x"></i>
+                    <i class="fa-solid fa-plus fa-stack-1x"></i>
+                </span>
+            </div>
+
+            <div class="tareas">
+            </div>
+
+        </div>
+
+        <div class="taskBar">
+            <p>Tareas realizadas: <span id="okTask">0</span></p> 
+
+            <p>Total de tareas: <span id="totalTask">0</span></p>
+        </div>
+    </div>
+
+
+    <script src="./assets/js/script.js"></script>
+
+</body>
+
+</html>
