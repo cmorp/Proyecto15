@@ -2,23 +2,23 @@
 let tasks = [];
 const localStorageSave = () => {
     if (!localStorage.getItem("tasksLS")) {
-        localStorage.setItem("tasksLS" , JSON.stringify(tasks));
-    } else{
+        localStorage.setItem("tasksLS", JSON.stringify(tasks));
+    } else {
         localStorage.removeItem("tasksLS");
-        localStorage.setItem("tasksLS" , JSON.stringify(tasks));
+        localStorage.setItem("tasksLS", JSON.stringify(tasks));
     }
 };
 
 const addTask = () => {
     let taskObj = {
-        id : 0,
-        task : "",
-        status : true //TRUE = TAREA PENDIENTE;FALSE = TAREA REALIZADA
+        id: 0,
+        task: "",
+        status: true // TRUE = TAREA PENDIENTE; FALSE = TAREA REALIZADA
     }
     let task = document.querySelector('#newTask').value;
     if (task != "") {
         document.querySelector('#newTask').value = "";
-        (tasks.length === 0)? taskObj.id = 1 : taskObj.id = tasks[tasks.length - 1].id + 1;
+        (tasks.length === 0) ? taskObj.id = 1 : taskObj.id = tasks[tasks.length - 1].id + 1;
         taskObj.task = task;
         tasks.push(taskObj);
         localStorageSave();
@@ -30,7 +30,7 @@ const printTasks = () => {
     let tasksList = ``;
     let countTasks = 0;
     let okTasks = 0;
-    tasks.forEach(task =>{
+    tasks.forEach(task => {
         countTasks++;
         tasksList += `
         <div class="tarea">
@@ -44,7 +44,7 @@ const printTasks = () => {
             </div>
         </div>
     `;
-        if(!task.status) {
+        if (!task.status) {
             okTasks++;
         }
     })
@@ -55,10 +55,11 @@ const printTasks = () => {
 }
 
 const paintDone = () => {
-    tasks.forEach(task =>{
-        if(task.status === false) {
-            document.querySelector('#ok'+task.id).style.color = 'palegreen';
-        }}
+    tasks.forEach(task => {
+        if (task.status === false) {
+            document.querySelector('#ok' + task.id).style.color = 'palegreen';
+        }
+    }
     )
 }
 
@@ -79,9 +80,33 @@ const doneTask = (taskId) => {
 
 const newTaskBtn = document.querySelector('#addTask');
 const newTaskInput = document.querySelector('#newTask');
-newTaskBtn.addEventListener('click',addTask);
-newTaskInput.addEventListener('keypress', event =>(event.keyCode === 13)?addTask():false)
-if(localStorage.getItem("tasksLS")){
+newTaskBtn.addEventListener('click', addTask);
+newTaskInput.addEventListener('keypress', event =>
+    (event.keyCode === 13) ? addTask() : false
+);
+if (localStorage.getItem("tasksLS")) {
     tasks = JSON.parse(localStorage.getItem("tasksLS"));
     printTasks();
 };
+
+// TAREAS INICIALES
+tasks = [
+    {
+        id: 1,
+        task: "Hacer deporte",
+        status: true,
+    },
+    {
+        id: 2,
+        task: "Estudiar",
+        status: true,
+    },
+    {
+        id: 3,
+        task: "Regar las plantas",
+        status: true,
+    },
+];
+
+// LLAMAR A LA FUNCIÓN PARA MOSTRAR LAS TAREAS AL CARGAR LA PÁGINA
+printTasks();
